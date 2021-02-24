@@ -6,16 +6,17 @@ gl.short_line_list = {'LuaTree','vista','dbui'}
 
 local colors = {
   bg = '#282c34',
-  yellow = '#fabd2f',
-  cyan = '#008080',
+  yellow = '#f3f99d',
+  cyan = '#9aedfe',
   darkblue = '#081633',
-  green = '#608B4E',
+  green = '#5af78e',
   orange = '#FF8800',
-  purple = '#5d4d7a',
+  purple = '#ff6ac1',
   magenta = '#d16d9e',
   grey = '#c0c0c0',
-  blue = '#569CD6',
-  red = '#D16969'
+  blue = '#57c7ff',
+  red = '#ff5c57',
+  white = "#ffffff",
 }
 
 local buffer_not_empty = function()
@@ -72,7 +73,7 @@ gls.left[2] = {
                           ['r?'] = colors.cyan,
                           ['!']  = colors.red,
                           t = colors.red}
-      vim.api.nvim_command('hi GalaxyViMode guibg='..mode_color[vim.fn.mode()])
+      vim.api.nvim_command('hi GalaxyViMode guifg='..mode_color[vim.fn.mode()])
       return '  NVCode '
     end,
     separator = ' ',
@@ -82,7 +83,7 @@ gls.left[2] = {
       end
       return colors.bg
     end},
-    highlight = {colors.grey,colors.bg,'bold'},
+    highlight = {colors.white,colors.bg,'bold'},
   },
 }
 -- gls.left[3] ={
@@ -105,9 +106,9 @@ gls.left[2] = {
 
 gls.left[3] = {
   GitIcon = {
-    provider = function() return ' ' end,
+    provider = function() return '  ' end,
     condition = buffer_not_empty,
-    highlight = {colors.orange,colors.bg},
+    highlight = {colors.white,colors.bg},
   }
 }
 gls.left[4] = {
@@ -116,7 +117,7 @@ gls.left[4] = {
     separator = ' ',
     separator_highlight = {colors.purple,colors.bg},
     condition = buffer_not_empty,
-    highlight = {colors.grey,colors.bg},
+    highlight = {colors.white,colors.bg},
   }
 }
 
@@ -134,7 +135,7 @@ gls.left[5] = {
     condition = checkwidth,
     -- separator = ' ',
     -- separator_highlight = {colors.purple,colors.bg},
-    icon = '  ',
+    icon = '  ',
     highlight = {colors.green,colors.bg},
   }
 }
@@ -144,7 +145,7 @@ gls.left[6] = {
     condition = checkwidth,
     -- separator = ' ',
     -- separator_highlight = {colors.purple,colors.bg},
-    icon = '  ',
+    icon = '  ',
     highlight = {colors.blue,colors.bg},
   }
 }
@@ -154,7 +155,7 @@ gls.left[7] = {
     condition = checkwidth,
     -- separator = ' ',
     -- separator_highlight = {colors.purple,colors.bg},
-    icon = '  ',
+    icon = '  ',
     highlight = {colors.red,colors.bg},
   }
 }

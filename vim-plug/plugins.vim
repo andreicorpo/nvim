@@ -112,9 +112,18 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'puremourning/vimspector'
     Plug 'szw/vim-maximizer'
     " Neovim in Browser
-    Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(1) } }
+    " Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(1) } }
     " Rainbow brackets
-    " Plug 'luochen1990/rainbow'
+    Plug 'luochen1990/rainbow'
+    " GloomBuddy theme
+    Plug 'tjdevries/colorbuddy.vim'
+    Plug 'bkegley/gloombuddy'
+    " Styled Components
+    Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+    " Workspaces
+    Plug 'thaerkh/vim-workspace'
+    " Tabline
+    Plug 'bagrat/vim-buffet'
     " Async Linting Engine
     " TODO make sure to add ale config before plugin
     " Plug 'dense-analysis/ale'

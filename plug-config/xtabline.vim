@@ -9,7 +9,7 @@ let g:xtabline_settings.enable_persistance = 0
 " let g:xtabline_settings.last_open_first = 1
 let g:xtabline_lazy = 1
 
-let g:xtabline_settings.show_right_corner = 0
+let g:xtabline_settings.show_right_corner = 1
 
 let g:xtabline_settings.indicators = {
       \ 'modified': '+',

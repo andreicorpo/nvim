@@ -120,18 +120,29 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'bkegley/gloombuddy'
     " Styled Components
     Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-    " Workspaces
-    Plug 'thaerkh/vim-workspace'
-    " Tabline
-    Plug 'bagrat/vim-buffet'
+    " Git branch
+    Plug 'itchyny/vim-gitbranch'
+    " Session management
+    Plug 'tpope/vim-obsession'
+    Plug 'dhruvasagar/vim-prosession'
+    " Treesitter rainbow
+    Plug 'p00f/nvim-ts-rainbow'
+    " Multiple Cursors
+    " TODO add this back in change from C-n
+    Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
+
+
+
+
+
+
+    " -----------------------------------------------------------------------------------------------------------------------------------------------
     " Async Linting Engine
     " TODO make sure to add ale config before plugin
     " Plug 'dense-analysis/ale'
     " Better Whitespace
     " Plug 'ntpeters/vim-better-whitespace'
-    " Multiple Cursors
-    " TODO add this back in change from C-n
-    " Plug 'mg979/vim-visual-multi', {'branch': 'master'}
     " Plug 'yuezk/vim-js'
     " Plug 'maxmellon/vim-jsx-pretty'
     " Plug 'jelera/vim-javascript-syntax'

@@ -1,11 +1,11 @@
--- require'nvim-web-devicons'.setup()
-
 local gl = require('galaxyline')
+local gl_vcs = require('galaxyline.provider_vcs')
 local gls = gl.section
-gl.short_line_list = {'LuaTree','vista','dbui'}
+gl.short_line_list = {'coc-explorer','LuaTree','vista','dbui'}
 
 local colors = {
-  bg = '#282c34',
+  bg = 'NONE',
+  darkgrey = "#1e232e",
   yellow = '#f3f99d',
   cyan = '#9aedfe',
   darkblue = '#081633',
@@ -17,6 +17,7 @@ local colors = {
   blue = '#57c7ff',
   red = '#ff5c57',
   white = "#ffffff",
+  github = "#e24329",
 }
 
 local buffer_not_empty = function()
@@ -26,140 +27,130 @@ local buffer_not_empty = function()
   return false
 end
 
--- gls.left[1] = {
---   FirstElement = {
---     -- provider = function() return '▋' end,
---     provider = function() return ' ' end,
---     highlight = {colors.bg,colors.bg}
---   },
--- }
--- gls.left[2] = {
---   ViMode = {
---     provider = function()
---       local alias = {n = 'NORMAL',i = 'INSERT',c= 'COMMAND',V= 'VISUAL', [''] = 'VISUAL'}
---       return alias[vim.fn.mode()]
---     end,
---     separator = ' ',
---     separator_highlight = {colors.yellow,function()
---       if not buffer_not_empty() then
---         return colors.purple
---       end
---       return colors.purple
---     end},
---     highlight = {colors.grey,colors.purple,'bold'},
---   },
--- }
+
+local mode_color = function()
+  local mode = {n = colors.blue,
+                i = colors.green,
+                v = colors.github,
+                [''] = colors.github,
+                V = colors.github,
+                c = colors.blue,
+                no = colors.magenta,
+                s = colors.orange,
+                S = colors.orange,
+                [''] = colors.orange,
+                ic = colors.yellow,
+                R = colors.red,
+                Rv = colors.red,
+                cv = colors.red,
+                ce=colors.red,
+                r = colors.cyan,
+                rm = colors.cyan,
+                ['r?'] = colors.cyan,
+                ['!']  = colors.red,
+                t = colors.red}
+  return mode[vim.fn.mode()]
+end
+
+
+gls.left[1] = {
+  ViModeIcon = {
+    provider = function()
+        vim.api.nvim_command('hi GalaxyViModeIcon guifg='..mode_color())
+        return '▋    '
+    end,
+    highlight = {mode_color(),colors.darkgrey},
+  },
+}
+
 gls.left[2] = {
   ViMode = {
     provider = function()
-      -- auto change color according the vim mode
-      local mode_color = {n = colors.purple, 
-                          i = colors.green,
-                          v = colors.blue,
-                          [''] = colors.blue,
-                          V = colors.blue,
-                          c = colors.purple,
-                          no = colors.magenta,
-                          s = colors.orange,
-                          S = colors.orange,
-                          [''] = colors.orange,
-                          ic = colors.yellow,
-                          R = colors.red,
-                          Rv = colors.red,
-                          cv = colors.red,
-                          ce=colors.red, 
-                          r = colors.cyan,
-                          rm = colors.cyan, 
-                          ['r?'] = colors.cyan,
-                          ['!']  = colors.red,
-                          t = colors.red}
-      vim.api.nvim_command('hi GalaxyViMode guifg='..mode_color[vim.fn.mode()])
-      return '  NVCode '
+        vim.api.nvim_command('hi GalaxyViMode guifg='..mode_color())
+        return 'hello '
     end,
-    separator = ' ',
-    separator_highlight = {colors.yellow,function()
-      if not buffer_not_empty() then
-        return colors.bg
-      end
-      return colors.bg
-    end},
-    highlight = {colors.white,colors.bg,'bold'},
+    highlight = {mode_color(),colors.darkgrey,'italic'},
   },
 }
--- gls.left[3] ={
---   FileIcon = {
---     separator = ' ',
---     provider = 'FileIcon',
---     condition = buffer_not_empty,
---     highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color,colors.bg},
---   },
--- }
--- gls.left[4] = {
---   FileName = {
---     provider = {'FileSize'},
---     condition = buffer_not_empty,
---     separator = ' ',
---     separator_highlight = {colors.purple,colors.bg},
---     highlight = {colors.magenta,colors.bg}
---   }
--- }
 
 gls.left[3] = {
+  ViModeSeparator = {
+    provider = function()
+        if(buffer_not_empty()) then
+          vim.api.nvim_command('hi GalaxyViModeSeparator guibg='..colors.darkgrey)
+        else
+          vim.api.nvim_command('hi GalaxyViModeSeparator guibg=NONE')
+        end
+        return ' '
+    end,
+    highlight = {colors.darkgrey, colors.darkgrey},
+  },
+}
+
+gls.left[4] = {
   GitIcon = {
-    provider = function() return '  ' end,
+    provider = function() return '    ' end,
     condition = buffer_not_empty,
-    highlight = {colors.white,colors.bg},
+    separator = ' ',
+    separator_highlight = {colors.darkgrey,colors.darkgrey},
+    highlight = {colors.white,colors.darkgrey},
   }
 }
-gls.left[4] = {
+gls.left[5] = {
   GitBranch = {
     provider = 'GitBranch',
-    separator = ' ',
-    separator_highlight = {colors.purple,colors.bg},
+    separator = '',
+    separator_highlight = {colors.darkgrey,colors.darkgrey},
+    highlight = {colors.white,colors.darkgrey},
     condition = buffer_not_empty,
-    highlight = {colors.white,colors.bg},
   }
 }
 
 local checkwidth = function()
   local squeeze_width  = vim.fn.winwidth(0) / 2
-  if squeeze_width > 40 then
+  if squeeze_width > 40 and buffer_not_empty() then
     return true
   end
   return false
 end
 
-gls.left[5] = {
+gls.left[6] = {
   DiffAdd = {
     provider = 'DiffAdd',
-    condition = checkwidth,
-    -- separator = ' ',
-    -- separator_highlight = {colors.purple,colors.bg},
+    condition = function()
+      if checkwidth() and gl_vcs.diff_add() then
+        return true
+      else
+        return false
+      end
+    end,
+    separator = ' ',
+    separator_highlight = {colors.darkgrey,colors.darkgrey},
     icon = '  ',
-    highlight = {colors.green,colors.bg},
-  }
-}
-gls.left[6] = {
-  DiffModified = {
-    provider = 'DiffModified',
-    condition = checkwidth,
-    -- separator = ' ',
-    -- separator_highlight = {colors.purple,colors.bg},
-    icon = '  ',
-    highlight = {colors.blue,colors.bg},
+    highlight = {colors.green,colors.darkgrey},
   }
 }
 gls.left[7] = {
-  DiffRemove = {
-    provider = 'DiffRemove',
+  DiffModified = {
+    provider = 'DiffModified',
     condition = checkwidth,
-    -- separator = ' ',
-    -- separator_highlight = {colors.purple,colors.bg},
-    icon = '  ',
-    highlight = {colors.red,colors.bg},
+    separator = ' ',
+    separator_highlight = {colors.darkgrey,colors.darkgrey},
+    icon = '  ',
+    highlight = {colors.blue,colors.darkgrey},
   }
 }
 gls.left[8] = {
+  DiffRemove = {
+    provider = 'DiffRemove',
+    condition = checkwidth,
+    separator = '',
+    separator_highlight = {colors.darkgrey,colors.bg},
+    icon = '  ',
+    highlight = {colors.red,colors.darkgrey},
+  }
+}
+gls.left[9] = {
   LeftEnd = {
     provider = function() return ' ' end,
     separator = ' ',
@@ -167,106 +158,209 @@ gls.left[8] = {
     highlight = {colors.purple,colors.bg}
   }
 }
-gls.left[9] = {
+gls.left[10] = {
   DiagnosticError = {
     provider = 'DiagnosticError',
+    separator = ' ',
+    separator_highlight = {colors.bg, colors.bg},
     icon = '  ',
     highlight = {colors.red,colors.bg}
   }
 }
-gls.left[10] = {
+gls.left[11] = {
   Space = {
     provider = function () return '' end
   }
 }
-gls.left[11] = {
+gls.left[12] = {
   DiagnosticWarn = {
     provider = 'DiagnosticWarn',
+    separator = ' ',
+    separator_highlight = {colors.bg, colors.bg},
     icon = '  ',
     highlight = {colors.yellow,colors.bg},
   }
 }
-gls.left[12] = {
+gls.left[13] = {
   DiagnosticHint = {
     provider = 'DiagnosticHint',
+    separator = ' ',
+    separator_highlight = {colors.bg, colors.bg},
     icon = '   ',
     highlight = {colors.blue,colors.bg},
   }
 }
-gls.left[13] = {
+gls.left[14] = {
   DiagnosticInfo = {
     provider = 'DiagnosticInfo',
+    separator = ' ',
+    separator_highlight = {colors.bg, colors.bg},
     icon = '   ',
     highlight = {colors.orange,colors.bg},
   }
 }
-gls.right[1]= {
-  FileFormat = {
-    provider = 'FileFormat',
-    separator = ' ',
-    separator_highlight = {colors.bg,colors.bg},
-    highlight = {colors.grey,colors.bg},
-  }
-}
-gls.right[2] = {
-  LineInfo = {
-    provider = 'LineColumn',
-    separator = ' | ',
-    separator_highlight = {colors.darkblue,colors.bg},
-    highlight = {colors.grey,colors.bg},
+
+gls.right[1] = {
+  FileTypeSeparator = {
+    provider = function()
+        return ' '
+    end,
+    highlight = {colors.darkgrey,colors.bg},
   },
 }
-gls.right[3] = {
-  PerCent = {
-    provider = 'LinePercent',
-    separator = ' |',
-    separator_highlight = {colors.darkblue,colors.bg},
-    highlight = {colors.grey,colors.bg},
-  }
-}
-gls.right[4] = {
-  ScrollBar = {
-    provider = 'ScrollBar',
-    highlight = {colors.yellow,colors.purple},
+
+gls.right[2]= {
+  FileIcon = {
+    provider = {
+        p = 'FileIcon',
+        f = function()
+          vim.api.nvim_command('hi GalaxyFileIcon guifg='..mode_color())
+        end
+    },
+    separator = ' ',
+    separator_highlight = {colors.darkgrey, colors.darkgrey},
+    highlight = {mode_color(),colors.darkgrey},
   }
 }
 
--- gls.short_line_left[1] = {
---   BufferType = {
---     provider = 'FileTypeName',
---     separator = ' ',
---     separator_highlight = {colors.purple,colors.bg},
---     highlight = {colors.grey,colors.purple}
---   }
--- }
+gls.right[3] = {
+  EmptySpace = {
+    provider = function()
+        return ' '
+    end,
+    highlight = {colors.darkgrey,colors.darkgrey},
+  },
+}
+
+gls.right[4]= {
+  FileName = {
+    provider = {
+        p = 'FileName',
+        f = function()
+          vim.api.nvim_command('hi GalaxyFileName guifg='..mode_color())
+        end
+    },
+    highlight = {mode_color(),colors.darkgrey},
+  }
+}
+
+gls.right[5] = {
+  LineColumnSeparator = {
+    provider = function()
+        vim.api.nvim_command('hi GalaxyLineColumnSeparator guifg='..mode_color())
+        return '  '
+    end,
+    highlight = {mode_color(),colors.darkgrey},
+  },
+}
+
+gls.right[6]= {
+  LineInfo = {
+    provider = {
+        p = 'LineColumn',
+        f = function()
+          vim.api.nvim_command('hi GalaxyLineInfo guifg='..mode_color())
+        end
+    },
+    highlight = {mode_color(),colors.darkgrey},
+  }
+}
+
+gls.right[7] = {
+  EmptySpace = {
+    provider = function()
+        return ' '
+    end,
+    highlight = {colors.darkgrey,colors.darkgrey},
+  },
+}
+
+gls.right[8] = {
+  LineColumnSeparator = {
+    provider = function()
+        vim.api.nvim_command('hi GalaxyLineColumnSeparator guifg='..mode_color())
+        return '  '
+    end,
+    highlight = {mode_color(),colors.darkgrey},
+  },
+}
+
+gls.right[9]= {
+  PerCent = {
+    provider = {
+        p = 'LinePercent',
+        f = function()
+          vim.api.nvim_command('hi GalaxyPerCent guifg='..mode_color())
+        end
+    },
+    highlight = {mode_color(),colors.darkgrey},
+  }
+}
+
+gls.right[10] = {
+  EmptySpace = {
+    provider = function()
+        return ' '
+    end,
+    highlight = {colors.darkgrey,colors.darkgrey},
+  },
+}
+
+gls.right[11] = {
+  ScrollBar = {
+    provider = {
+        p = 'ScrollBar',
+        f = function()
+          vim.api.nvim_command('hi GalaxyScrollBar guifg='..mode_color())
+        end
+    },
+    highlight = {mode_color(),colors.darkgrey},
+  }
+}
+
 
 gls.short_line_left[1] = {
-  LeftEnd = {
-    provider = function() return ' ' end,
+  EmptySpaceShrt = {
+    provider = function()
+        return '▋  '
+    end,
+    highlight = {colors.darkgrey,colors.darkgrey},
+  },
+}
+
+gls.short_line_left[2]= {
+  FileIconShrt = {
+    provider = {
+        p = 'FileIcon',
+        f = function()
+          vim.api.nvim_command('hi GalaxyFileIconShrt guifg='..mode_color())
+        end
+    },
     separator = ' ',
-    separator_highlight = {colors.purple,colors.bg},
-    highlight = {colors.purple,colors.bg}
+    separator_highlight = {colors.darkgrey, colors.darkgrey},
+    highlight = {mode_color(),colors.darkgrey},
   }
 }
 
--- gls.short_line_right[1] = {
---   BufferIcon = {
---     provider= 'BufferIcon',
---     separator = ' ',
---     separator_highlight = {colors.purple,colors.bg},
---     highlight = {colors.grey,colors.purple}
---   }
--- }
--- function! s:my_bookmark_color() abort
---   let s:scl_guibg = matchstr(execute('hi SignColumn'), 'guibg=\zs\S*')
---   if empty(s:scl_guibg)
---     let s:scl_guibg = 'NONE'
---   endif
---   exe 'hi MyBookmarkSign guifg=' . s:scl_guibg
--- endfunction
--- call s:my_bookmark_color() " don't remove this line!
+gls.short_line_left[3] = {
+  EmptySpaceShrt = {
+    provider = function()
+        return ' '
+    end,
+    highlight = {colors.darkgrey,colors.darkgrey},
+  },
+}
 
--- augroup UserGitSignColumnColor
---   autocmd!
---   autocmd ColorScheme * call s:my_bookmark_color()
--- augroup END
+gls.short_line_left[4]= {
+  FileNameShrt = {
+    provider = {
+        p = 'FileName',
+        f = function()
+          vim.api.nvim_command('hi GalaxyFileNameShrt guifg='..mode_color())
+        end
+    },
+    highlight = {mode_color(),colors.darkgrey},
+  }
+}
+
+

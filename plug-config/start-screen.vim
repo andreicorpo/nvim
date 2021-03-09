@@ -11,6 +11,7 @@ let g:startify_session_dir = '~/.config/nvim/session'
 
 
 let g:startify_lists = [
+          \ { 'type': 'sessions',  'header': ['   Sessions']                     },
           \ { 'type': 'files',     'header': ['   Files']                        },
           \ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
           \ { 'type': 'bookmarks', 'header': ['   Bookmarks']                    },
@@ -38,3 +39,13 @@ let g:startify_bookmarks = [
             \ ]
 
 let g:startify_enable_special = 0
+
+function! GetUniqueSessionName()
+  let path = fnamemodify(getcwd(), ':t')
+  let path = empty(path) ? 'no-project' : path
+  return substitute(path, '/', '-', 'g')
+endfunction
+
+autocmd VimLeavePre * silent execute 'SSave! ' . GetUniqueSessionName()
+autocmd BufWinLeave * silent execute 'SSave! ' . GetUniqueSessionName()
+autocmd BufLeave * silent execute 'SSave! ' . GetUniqueSessionName()

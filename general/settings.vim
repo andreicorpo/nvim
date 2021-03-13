@@ -54,5 +54,16 @@ set guifont=JetBrainsMono\ Nerd\ Font
 " au! BufWritePost $MYVIMRC source %      " auto source when writing to init.vm alternatively you can run :source $MYVIMRC
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+autocmd FileType markdown set wrap
+
 " You can't stop me
 cmap w!! w !sudo tee %
+
+"For Folding
+  "Method for folding
+set foldmethod=indent
+  "Open all when entering for the first time
+set foldlevel=20
+  "Save the state for the next time
+" autocmd BufWinLeave *.* mkview
+" autocmd BufWinEnter *.* silent! loadview

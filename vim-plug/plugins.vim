@@ -47,7 +47,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Terminal
     Plug 'voldikss/vim-floaterm'
     " Start Screen
-    Plug 'mhinz/vim-startify'
+    " Plug 'mhinz/vim-startify'
     " Vista
     Plug 'liuchengxu/vista.vim'
     " See what keys do like in emacs
@@ -111,6 +111,16 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'turbio/bracey.vim'
     " Better quickfix
     Plug 'kevinhwang91/nvim-bqf'
+    " Dashboard
+    Plug 'glepnir/dashboard-nvim'
+
+    " Indent lines
+    Plug 'Yggdroot/indentLine'
+    " Session management
+    Plug 'tpope/vim-obsession'
+    Plug 'dhruvasagar/vim-prosession'
+    " Styled Components
+    Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
   endif
 
 call plug#end()

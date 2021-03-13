@@ -22,7 +22,8 @@ if (has("termguicolors"))
     hi Normal ctermbg=NONE guibg=NONE guifg=White ctermfg=231
     hi NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
     hi SignColumn ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
+    hi TabLineFill ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE 
+    hi BufferTabpageFill guibg=NONE 
+    hi DashboardCenter gui=bold guifg=#5af78e
 endif
 
-hi TabLineFill ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE 
-hi BufferTabpageFill guibg=NONE 

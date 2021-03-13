@@ -99,3 +99,6 @@ inoremap <expr> <c-k> ("\<C-p>")
 " Add new line and exit insert mode
 nnoremap <Enter> o<ESC>
 nnoremap \ O<ESC>
+
+" Add which_key mappings here too
+

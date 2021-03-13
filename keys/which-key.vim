@@ -2,7 +2,7 @@
 let @s = 'veS"'
 
 " Timeout
-let g:which_key_timeout = 100
+let g:which_key_timeout = 0
 
 let g:which_key_display_names = {'<CR>': '↵', '<TAB>': '⇆'}
 
@@ -33,47 +33,46 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 
 
 " Single mappings
-let g:which_key_map['/'] = [ ':call Comment()'                                 , 'comment' ]
-let g:which_key_map['?'] = [ ':NvimTreeFindFile'                               , 'comment' ]
-let g:which_key_map['.'] = [ ':e $MYVIMRC'                                     , 'open init' ]
-let g:which_key_map[';'] = [ ':Commands'                                       , 'commands' ]
-let g:which_key_map['='] = [ '<C-W>='                                          , 'balance windows' ]
-let g:which_key_map['e'] = [ ':NvimTreeToggle'                                 , 'explorer' ]
-let g:which_key_map['h'] = [ '<C-W>s'                                          , 'split below']
-let g:which_key_map['n'] = [ ':let @/ = ""'                                    , 'no highlight' ]
-let g:which_key_map['o'] = [ ':RnvimrToggle'                                   , 'open' ]
-let g:which_key_map['p'] = [ ':Files'                                          , 'search files' ]
+let g:which_key_map['/'] = [ ':call Comment()'                                             , 'Comment' ]
+let g:which_key_map['.'] = [ ':e $MYVIMRC'                                                 , 'open init' ]
+let g:which_key_map[';'] = [ ':Commands'                                                   , 'Commands' ]
+let g:which_key_map['='] = [ '<C-W>='                                                      , 'balance windows' ]
+let g:which_key_map['e'] = [ ':NvimTreeToggle'                                             , 'Explorer' ]
+let g:which_key_map['h'] = [ '<C-W>s'                                                      , 'Split below']
+let g:which_key_map['n'] = [ ':let @/ = ""'                                                , 'No highlight' ]
+let g:which_key_map['o'] = [ ':RnvimrToggle'                                               , 'Open ranger' ]
+let g:which_key_map['p'] = [ ':call v:lua.require("telescope.builtin").find_files()'       , 'Search files' ]
 " TODO fix this
 " let g:which_key_map['q'] = [ ':q'                                              , 'quit' ]
-let g:which_key_map['T'] = [ ':TSHighlightCapturesUnderCursor'                 , 'treesitter highlight' ]
-let g:which_key_map['u'] = [ ':UndotreeToggle'                                 , 'undo tree']
-let g:which_key_map['v'] = [ '<C-W>v'                                          , 'split right']
-let g:which_key_map['W'] = [ ':call WindowSwap#EasyWindowSwap()'               , 'move window' ]
-let g:which_key_map['z'] = [ 'Goyo'                                            , 'zen' ]
+let g:which_key_map['T'] = [ ':TSHighlightCapturesUnderCursor'                             , 'Treesitter highlight' ]
+let g:which_key_map['u'] = [ ':UndotreeToggle'                                             , 'Undo tree']
+let g:which_key_map['v'] = [ '<C-W>v'                                                      , 'Split right']
+let g:which_key_map['W'] = [ ':call WindowSwap#EasyWindowSwap()'                           , 'Move window' ]
+let g:which_key_map['z'] = [ 'Goyo'                                                        , 'Zen' ]
 
 " Group mappings
 
 " q is for quitting
 let g:which_key_map.q = {
-      \ 'name' : '+file quit' ,
-      \ 'q' : [':q'                      , 'quit'],
-      \ 'd' : [':q!'                     , 'discard and quit'],
-      \ 'a' : [':qa'                     , 'quit all'],
+      \ 'name' : '+ File quit' ,
+      \ 'q' : [':q'                      , 'Quit'],
+      \ 'd' : [':q!'                     , 'Discard and quit'],
+      \ 'a' : [':qa'                     , 'Quit all'],
       \ }
 
 " w is for saving
 let g:which_key_map.w = {
-      \ 'name' : '+file write' ,
-      \ 'w' : [':w'                      , 'save file'],
-      \ 'a' : [':wa'                     , 'save all files'],
-      \ 's' : [':noa w'                  , 'writer w/o formatting'],
+      \ 'name' : '+ File write' ,
+      \ 'w' : [':w'                      , 'Save file'],
+      \ 'a' : [':wa'                     , 'Save all files'],
+      \ 's' : [':noa w'                  , 'Writer w/o formatting'],
       \ }
 
 " a is for actions
 let g:which_key_map.a = {
       \ 'name' : '+actions' ,
       \ 'c' : [':ColorizerToggle'        , 'colorizer'],
-      \ 'e' : [':CocCommand explorer'    , 'explorer'],
+      \ 'e' : [':CocCommand explorer'    , 'Explorer'],
       \ 'h' : [':let @/ = ""'            , 'remove search highlight'],
       \ 'l' : [':Bracey'                 , 'start live server'],
       \ 'L' : [':BraceyStop'             , 'stop live server'],
@@ -133,25 +132,25 @@ let g:which_key_map.d = {
 
 " F is for fold
 let g:which_key_map.F = {
-    \ 'name': '+fold',
-    \ 'O' : [':set foldlevel=20', 'open all'],
-    \ 'C' : [':set foldlevel=0', 'close all'],
-    \ 'c' : [':foldclose', 'close'],
-    \ 'o' : [':foldopen', 'open'],
-    \ '1' : [':set foldlevel=1', 'level1'],
-    \ '2' : [':set foldlevel=2', 'level2'],
-    \ '3' : [':set foldlevel=3', 'level3'],
-    \ '4' : [':set foldlevel=4', 'level4'],
-    \ '5' : [':set foldlevel=5', 'level5'],
-    \ '6' : [':set foldlevel=6', 'level6']
+    \ 'name': '+ Fold',
+    \ 'O' : [':set foldlevel=20', 'Open all'],
+    \ 'C' : [':set foldlevel=0', 'Close all'],
+    \ 'c' : [':foldclose', 'Close'],
+    \ 'o' : [':foldopen', 'Open'],
+    \ '1' : [':set foldlevel=1', 'Level1'],
+    \ '2' : [':set foldlevel=2', 'Level2'],
+    \ '3' : [':set foldlevel=3', 'Level3'],
+    \ '4' : [':set foldlevel=4', 'Level4'],
+    \ '5' : [':set foldlevel=5', 'Level5'],
+    \ '6' : [':set foldlevel=6', 'Level6']
     \ }
 
 " f is for find and replace
       " \ 'f' : [':Farr'                     , 'file'],
 let g:which_key_map.f = {
-      \ 'name' : '+find & replace' ,
-      \ 'f' : [':Farr --source=vimgrep'    , 'file'],
-      \ 'p' : [':Farr --source=rgnvim'     , 'project'],
+      \ 'name' : '+ Find & replace' ,
+      \ 'f' : [':Farr --source=vimgrep'    , 'File'],
+      \ 'p' : [':Farr --source=rgnvim'     , 'Project'],
       \ }
 
 " command! -buffer JdtCompile lua require('jdtls').compile()
@@ -161,90 +160,68 @@ let g:which_key_map.f = {
 " command! -buffer JdtJshell lua require('jdtls').jshell()
 
 " j is for java
-let g:which_key_map.j = {
-      \ 'name' : '+java' ,
-      \ 'c' : [':AsyncTask file-compile'      , 'compile file'],
-      \ 'b' : [':AsyncTask project-build'     , 'build project'],
-      \ 'e' : [':AsyncTaskEdit'               , 'edit local tasks'],
-      \ 'f' : [':AsyncTaskFzf'                , 'find task'],
-      \ 'g' : [':AsyncTaskEdit!'              , 'edit global tasks'],
-      \ 'h' : [':AsyncTaskList!'              , 'list hidden tasks'],
-      \ 'l' : [':CocList tasks'               , 'list tasks'],
-      \ 'm' : [':AsyncTaskMacro'              , 'macro help'],
-      \ 'o' : [':copen'                       , 'open task view'],
-      \ 'r' : [':AsyncTask file-run'          , 'run file'],
-      \ 'p' : [':AsyncTask project-run'       , 'run project'],
-      \ 'x' : [':cclose'                      , 'close task view'],
-      \ }
+" let g:which_key_map.j = {
+      " \ 'name' : '+java' ,
+      " \ 'c' : [':AsyncTask file-compile'      , 'compile file'],
+      " \ 'b' : [':AsyncTask project-build'     , 'build project'],
+      " \ 'e' : [':AsyncTaskEdit'               , 'edit local tasks'],
+      " \ 'f' : [':AsyncTaskFzf'                , 'find task'],
+      " \ 'g' : [':AsyncTaskEdit!'              , 'edit global tasks'],
+      " \ 'h' : [':AsyncTaskList!'              , 'list hidden tasks'],
+      " \ 'l' : [':CocList tasks'               , 'list tasks'],
+      " \ 'm' : [':AsyncTaskMacro'              , 'macro help'],
+      " \ 'o' : [':copen'                       , 'open task view'],
+      " \ 'r' : [':AsyncTask file-run'          , 'run file'],
+      " \ 'p' : [':AsyncTask project-run'       , 'run project'],
+      " \ 'x' : [':cclose'                      , 'close task view'],
+      " \ }
 
 " k is for task
-let g:which_key_map.k = {
-      \ 'name' : '+task' ,
-      \ 'c' : [':AsyncTask file-compile'      , 'compile file'],
-      \ 'b' : [':AsyncTask project-build'     , 'build project'],
-      \ 'e' : [':AsyncTaskEdit'               , 'edit local tasks'],
-      \ 'f' : [':AsyncTaskFzf'                , 'find task'],
-      \ 'g' : [':AsyncTaskEdit!'              , 'edit global tasks'],
-      \ 'h' : [':AsyncTaskList!'              , 'list hidden tasks'],
-      \ 'm' : [':AsyncTaskMacro'              , 'macro help'],
-      \ 'o' : [':copen'                       , 'open task view'],
-      \ 'r' : [':AsyncTask file-run'          , 'run file'],
-      \ 'p' : [':AsyncTask project-run'       , 'run project'],
-      \ 'x' : [':cclose'                      , 'close task view'],
-      \ }
+" let g:which_key_map.k = {
+"       \ 'name' : '+task' ,
+"       \ 'c' : [':AsyncTask file-compile'      , 'compile file'],
+"       \ 'b' : [':AsyncTask project-build'     , 'build project'],
+"       \ 'e' : [':AsyncTaskEdit'               , 'edit local tasks'],
+"       \ 'f' : [':AsyncTaskFzf'                , 'find task'],
+"       \ 'g' : [':AsyncTaskEdit!'              , 'edit global tasks'],
+"       \ 'h' : [':AsyncTaskList!'              , 'list hidden tasks'],
+"       \ 'm' : [':AsyncTaskMacro'              , 'macro help'],
+"       \ 'o' : [':copen'                       , 'open task view'],
+"       \ 'r' : [':AsyncTask file-run'          , 'run file'],
+"       \ 'p' : [':AsyncTask project-run'       , 'run project'],
+"       \ 'x' : [':cclose'                      , 'close task view'],
+"       \ }
       " \ 'l' : [':AsyncTaskList'               , 'list tasks'],
 
 " m is for mark
-let g:which_key_map.m = {
-      \ 'name' : '+mark' ,
-      \ 'c' : [':CocCommand bookmark.clearForCurrentFile', 'clear file'],
-      \ 'C' : [':CocCommand bookmark.clearForAllFiles', 'clear project'],
-      \ 'j' : [':CocCommand bookmark.next', 'next bookmark'],
-      \ 'k' : [':CocCommand bookmark.prev', 'prev bookmark'],
-      \ 't' : [':CocCommand bookmark.toggle', 'toggle bookmark'],
-      \ }
+" let g:which_key_map.m = {
+"       \ 'name' : '+mark' ,
+"       \ 'c' : [':CocCommand bookmark.clearForCurrentFile', 'clear file'],
+"       \ 'C' : [':CocCommand bookmark.clearForAllFiles', 'clear project'],
+"       \ 'j' : [':CocCommand bookmark.next', 'next bookmark'],
+"       \ 'k' : [':CocCommand bookmark.prev', 'prev bookmark'],
+"       \ 't' : [':CocCommand bookmark.toggle', 'toggle bookmark'],
+"       \ }
       " CoC throws an error
       " \ 'a' : [':CocCommand bookmark.annotate', 'annotate bookmark'],
 
-
-" s is for search powered by telescope
 let g:which_key_map.s = {
-      \ 'name' : '+search' ,
-      \ '.' : [':Telescope filetypes'                   , 'filetypes'],
-      \ ';' : [':Telescope commands'                    , 'commands'],
-      \ 'a' : [':Telescope lsp_code_actions'            , 'code_actions'],
-      \ 'A' : [':Telescope builtin'                     , 'all'],
-      \ 'b' : [':Telescope buffers'                     , 'buffers'],
-      \ 'B' : [':Telescope git_branches'                , 'git branches'],
-      \ 'd' : [':Telescope lsp_document_diagnostics'    , 'document_diagnostics'],
-      \ 'D' : [':Telescope lsp_workspace_diagnostics'   , 'workspace_diagnostics'],
-      \ 'c' : [':Telescope git_commits'                 , 'git_commits'],
-      \ 'C' : [':Telescope git_bcommits'                , 'git_bcommits'],
-      \ 'f' : [':Telescope find_files'                  , 'files'],
-      \ 'F' : [':Telescope git_files'                   , 'git_files'],
-      \ 'g' : [':Telescope tags'                        , 'tags'],
-      \ 'G' : [':Telescope current_buffer_tags'         , 'buffer_tags'],
-      \ 'h' : [':Telescope command_history'             , 'history'],
-      \ 'H' : [':Telescope help_tags'                   , 'help_tags'],
-      \ 'i' : [':Telescope media_files'                 , 'media files'],
-      \ 'k' : [':Telescope keymaps'                     , 'keymaps'],
-      \ 'l' : [':Telescope loclist'                     , 'loclist'],
-      \ 'm' : [':Telescope marks'                       , 'marks'],
-      \ 'M' : [':Telescope man_pages'                   , 'man_pages'],
-      \ 'o' : [':Telescope vim_options'                 , 'vim_options'],
-      \ 'O' : [':Telescope oldfiles'                    , 'oldfiles'],
-      \ 'p' : [':Telescope fd'                          , 'fd'],
-      \ 'P' : [':Telescope spell_suggest'               , 'spell_suggest'],
-      \ 's' : [':Telescope git_status'                  , 'git_status'],
-      \ 'S' : [':Telescope grep_string'                 , 'grep_string'],
-      \ 't' : [':Telescope live_grep'                   , 'text'],
-      \ 'y' : [':Telescope symbols'                     , 'symbols'],
-      \ 'Y' : [':Telescope lsp_workspace_symbols'       , 'lsp_workspace_symbols'],
-      \ 'r' : [':Telescope registers'                   , 'registers'],
-      \ 'R' : [':Telescope reloader'                    , 'reloader'],
-      \ 'w' : [':Telescope file_browser'                , 'buf_fuz_find'],
-      \ 'u' : [':Telescope colorscheme'                 , 'colorschemes'],
-      \ 'z' : [':Telescope current_buffer_fuzzy_find'   , 'buf_fuz_find'],
+      \ 'name' : '+ Search' ,
+      \ ';' : [':call v:lua.require("telescope.builtin").commands()'                                          , 'Commands'],
+      \ 'a' : [':call v:lua.require("telescope.builtin").lsp_code_actions()'                                  , 'Code actions'],
+      \ 'b' : [':call v:lua.require("telescope.builtin").buffers()'                                           , 'Buffers'],
+      \ 'B' : [':call v:lua.require("telescope.builtin").git_branches()'                                      , 'Git branches'],
+      \ 'd' : [':call v:lua.require("telescope.builtin").lsp_document_diagnostics()'                          , 'Document diagnostics'],
+      \ 'D' : [':call v:lua.require("telescope.builtin").lsp_workspace_diagnostics()'                         , 'Workspace diagnostics'],
+      \ 'f' : [':call v:lua.require("telescope.builtin").find_files()'                                        , 'Search files'],
+      \ 'w' : [':call v:lua.require("telescope.builtin").oldfiles()'                                          , 'Files history'],
+      \ 'e' : [':call v:lua.require("telescope.builtin").file_browser()'                                      , 'Browse files'],
+      \ 'h' : [':call v:lua.require("telescope.builtin").command_history()'                                   , 'Cmd history'],
+      \ 'k' : [':call v:lua.require("telescope.builtin").keymaps()'                                           , 'Keymaps'],
+      \ 'P' : [':call v:lua.require("telescope.builtin").spell_suggest()'                                     , 'Spell suggest'],
+      \ 'S' : [':call v:lua.require("telescope.builtin").grep_string()'                                       , 'Search word'],
+      \ 't' : [':call v:lua.require("telescope.builtin").live_grep()'                                         , 'Search text'],
+      \ 'z' : [':call v:lua.require("telescope.builtin").current_buffer_fuzzy_find()'                         , 'Search buffer'],
       \ }
 
 let g:which_key_map.S = {

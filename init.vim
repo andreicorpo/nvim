@@ -29,7 +29,7 @@ else
   source ~/.config/nvim/plug-config/easymotion.vim
   source ~/.config/nvim/plug-config/goyo.vim
   source ~/.config/nvim/plug-config/vim-rooter.vim
-  source ~/.config/nvim/plug-config/start-screen.vim
+  " source ~/.config/nvim/plug-config/start-screen.vim
   source ~/.config/nvim/plug-config/gitgutter.vim
   source ~/.config/nvim/plug-config/git-messenger.vim
   source ~/.config/nvim/plug-config/closetags.vim
@@ -44,6 +44,11 @@ else
   source ~/.config/nvim/plug-config/lightbulb.vim
   source ~/.config/nvim/lua/lsp-wrapper.vim
   source ~/.config/nvim/plug-config/lsp-config.vim
+  source ~/.config/nvim/plug-config/vim-prosession.vim
+  source ~/.config/nvim/plug-config/indent-line.vim
+  source ~/.config/nvim/plug-config/dashboard.vim
+
+  " lua files
   luafile ~/.config/nvim/lua/lsp/general-ls.lua
   luafile ~/.config/nvim/lua/plugins/galaxyline-config.lua
   luafile ~/.config/nvim/lua/plugins/nvimtree-config.lua
@@ -53,12 +58,12 @@ else
   luafile ~/.config/nvim/lua/lsp/lsp-kind.lua
   luafile ~/.config/nvim/lua/plugins/compe-config.lua
   luafile ~/.config/nvim/lua/plugins/lspsaga-config.lua
+
   " LSP: https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
   luafile ~/.config/nvim/lua/lsp/lsp-config.lua
   luafile ~/.config/nvim/lua/lsp/lua-ls.lua
   luafile ~/.config/nvim/lua/lsp/python-ls.lua
   luafile ~/.config/nvim/lua/lsp/bash-ls.lua
-  autocmd FileType java luafile ~/.config/nvim/lua/lsp/java-ls.lua
   luafile ~/.config/nvim/lua/lsp/css-ls.lua
   luafile ~/.config/nvim/lua/lsp/docker-ls.lua
   luafile ~/.config/nvim/lua/lsp/graphql-ls.lua

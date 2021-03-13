@@ -57,6 +57,8 @@ else
   luafile $HOME/.config/nvim/lua/config-telescope.lua
   source $HOME/.config/nvim/plug-config/vimspector.vim
   source $HOME/.config/nvim/plug-config/vim_visual_multi.vim
+  source $HOME/.config/nvim/plug-config/indent-line.vim
+  source $HOME/.config/nvim/plug-config/vim-prosession.vim
   " source $HOME/.config/nvim/plug-config/illuminate.vim
   " source $HOME/.config/nvim/plug-config/vista.vim
   " source $HOME/.config/nvim/plug-config/xtabline.vim

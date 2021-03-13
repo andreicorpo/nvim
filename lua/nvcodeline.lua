@@ -5,6 +5,7 @@ gl.short_line_list = {'coc-explorer','LuaTree','vista','dbui'}
 
 local colors = {
   bg = 'NONE',
+  black = "#000000",
   darkgrey = "#1e232e",
   yellow = '#f3f99d',
   cyan = '#9aedfe',
@@ -248,7 +249,7 @@ gls.right[5] = {
   LineColumnSeparator = {
     provider = function()
         vim.api.nvim_command('hi GalaxyLineColumnSeparator guifg='..mode_color())
-        return '  '
+        return '  '
     end,
     highlight = {mode_color(),colors.darkgrey},
   },
@@ -279,7 +280,7 @@ gls.right[8] = {
   LineColumnSeparator = {
     provider = function()
         vim.api.nvim_command('hi GalaxyLineColumnSeparator guifg='..mode_color())
-        return '  '
+        return '  '
     end,
     highlight = {mode_color(),colors.darkgrey},
   },

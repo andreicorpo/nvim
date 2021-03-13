@@ -135,8 +135,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Multiple Cursors
     " TODO add this back in change from C-n
     Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-
-
+    " Indent lines
+    Plug 'Yggdroot/indentLine'
 
 
 
@@ -153,6 +153,11 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Plug 'jelera/vim-javascript-syntax'
     " Plugin Graveyard
 
+    " Javascript
+    " Plug 'maxmellon/vim-jsx-pretty'
+    " Plug 'jelera/vim-javascript-syntax'
+    " Plug 'yuezk/vim-js'
+    " Plug 'maxmellon/vim-jsx-pretty'
     " Debug
     " Plug 'mfussenegger/nvim-dap'
     " Plug 'nvim-dap-virtual-text'
@@ -163,7 +168,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Plug 'romgrk/nvim-treesitter-context'
     " Minimap
     " Plug 'wfxr/minimap.vim'
-    " jsx syntax support
     " Typescript syntax
     " Plug 'HerringtonDarkholme/yats.vim'
     " Multiple Cursors

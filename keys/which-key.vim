@@ -47,7 +47,7 @@ let g:which_key_map['h'] = [ '<C-W>s'                                          ,
 let g:which_key_map['n'] = [ ':let @/ = ""'                                    , 'no highlight' ]
 let g:which_key_map['o'] = [ ':RnvimrToggle'                                   , 'open' ]
 let g:which_key_map['p'] = [ ':Files'                                          , 'search files' ]
-let g:which_key_map['q'] = [ '<Plug>(coc-fix-current)'                         , 'quickfix' ]
+let g:which_key_map['Q'] = [ '<Plug>(coc-fix-current)'                         , 'quickfix' ]
 let g:which_key_map['T'] = [ ':TSHighlightCapturesUnderCursor'                 , 'treesitter highlight' ]
 let g:which_key_map['u'] = [ ':UndotreeToggle'                                 , 'undo tree']
 let g:which_key_map['v'] = [ '<C-W>v'                                          , 'split right']
@@ -55,6 +55,22 @@ let g:which_key_map['W'] = [ ':call WindowSwap#EasyWindowSwap()'               ,
 let g:which_key_map['z'] = [ 'Goyo'                                            , 'zen' ]
 
 " Group mappings
+
+" q is for quitting
+let g:which_key_map.q = {
+      \ 'name' : '+file quit' ,
+      \ 'q' : [':q'                      , 'quit'],
+      \ 'd' : [':q!'                     , 'discard and quit'],
+      \ 'a' : [':qa'                     , 'quit all'],
+      \ }
+
+" w is for saving
+let g:which_key_map.w = {
+      \ 'name' : '+file write' ,
+      \ 'w' : [':w'                      , 'save file'],
+      \ 'a' : [':wa'                     , 'save all files'],
+      \ 's' : [':noa w'                  , 'writer w/o formatting'],
+      \ }
 
 " a is for actions
 let g:which_key_map.a = {

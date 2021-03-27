@@ -22,6 +22,7 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
 let g:which_key_map[';'] = [ ':Dashboard'                                      , 'Home screen' ]
+let g:which_key_map['%'] = [ ':luafile %'                                      , 'Reload file' ]
 let g:which_key_map[','] = [ '<Plug>(emmet-expand-abbr)'                       , 'Expand tags' ]
 let g:which_key_map['"'] = [ '<Plug>PeekupOpen'                                , 'Registers' ]
 let g:which_key_map['?'] = [ ':NvimTreeFindFile'                               , 'Find current file' ]

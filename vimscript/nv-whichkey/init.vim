@@ -31,6 +31,8 @@ let g:which_key_map['f'] = [ ':Telescope find_files'                           ,
 let g:which_key_map['h'] = [ '<C-W>s'                                          , 'Split below']
 let g:which_key_map['n'] = [ ':let @/ = ""'                                    , 'No highlight' ]
 let g:which_key_map['r'] = [ ':RnvimrToggle'                                   , 'Ranger' ]
+let g:which_key_map['/'] = 'Comment toggle'
+
 " TODO create entire treesitter section
 let g:which_key_map['T'] = [ ':TSHighlightCapturesUnderCursor'                 , 'Treesitter highlight' ]
 let g:which_key_map['h'] = [ '<C-W>s'                                          , 'split below']
@@ -82,6 +84,7 @@ let g:which_key_map.a = {
       \ 'name' : '[ Actions ]' ,
       \ 'c' : [':ColorizerToggle'        , 'Colorizer'],
       \ 'h' : [':let @/ = ""'            , 'Remove search highlight'],
+      \ 'i' : [':IndentBlanklineToggle'  , 'Toggle indent lines'],
       \ 'l' : [':Bracey'                 , 'Start live server'],
       \ 'L' : [':BraceyStop'             , 'Stop live server'],
       \ 'n' : [':set nonumber!'          , 'Line numbers'],
@@ -132,6 +135,15 @@ let g:which_key_map.F = {
     \ '6' : [':set foldlevel=6'   , 'Level6']
     \ }
 
+" m is for mark
+" I'd rather use regular marks but they never clear
+let g:which_key_map.m = {
+    \ 'name': '+fold',
+    \ 't' : [':BookmarkToggle'   , 'toggle'],
+    \ 'j' : [':BookmarkNext'   , 'next mark'],
+    \ 'k' : [':BookmarkPrev'   , 'prev mark']
+    \ }
+
 " s is for search powered by telescope
 let g:which_key_map.s = {
       \ 'name' : '[ Search ]' ,
@@ -151,6 +163,7 @@ let g:which_key_map.s = {
       \ 'u' : [':Telescope colorscheme'                 , 'Colorschemes'],
       \ }
 
+" S is for Session
 let g:which_key_map.S = {
       \ 'name' : '[ Session ]' ,
       \ 's' : [':SessionSave'           , 'save session'],

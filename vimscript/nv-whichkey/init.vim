@@ -97,13 +97,14 @@ let g:which_key_map.a = {
 " b is for buffer
 let g:which_key_map.b = {
       \ 'name' : '[ Buffer ]' ,
-      \ '>' : [':BufferMoveNext'        , 'move next'],
-      \ '<' : [':BufferMovePrevious'    , 'move prev'],
-      \ 'b' : [':BufferPick'            , 'pick buffer'],
-      \ 'd' : [':Bdelete'               , 'delete-buffer'],
-      \ 'n' : ['bnext'                  , 'next-buffer'],
-      \ 'p' : ['bprevious'              , 'previous-buffer'],
-      \ '?' : ['Buffers'                , 'fzf-buffer'],
+      \ '>' : [':BufferMoveNext'                          , 'Move next'],
+      \ '<' : [':BufferMovePrevious'                      , 'Move prev'],
+      \ 'b' : [':BufferLinePick'                          , 'Pick buffer'],
+      \ 'd' : [':Bdelete'                                 , 'Delete buffer'],
+      \ 'n' : [':BufferLineCycleNext'                     , 'Next buffer'],
+      \ 'p' : [':BufferLineCyclePrev'                     , 'Previous buffer'],
+      \ '?' : [':Telescope buffers'                       , 'Search buffers'],
+      \ 's' : [':Telescope current_buffer_fuzzy_find'     , 'Search in buffer'],
       \ }
 
 " d is for debug
@@ -133,15 +134,6 @@ let g:which_key_map.F = {
     \ '4' : [':set foldlevel=4'   , 'Level4'],
     \ '5' : [':set foldlevel=5'   , 'Level5'],
     \ '6' : [':set foldlevel=6'   , 'Level6']
-    \ }
-
-" m is for mark
-" I'd rather use regular marks but they never clear
-let g:which_key_map.m = {
-    \ 'name': '+fold',
-    \ 't' : [':BookmarkToggle'   , 'toggle'],
-    \ 'j' : [':BookmarkNext'   , 'next mark'],
-    \ 'k' : [':BookmarkPrev'   , 'prev mark']
     \ }
 
 " s is for search powered by telescope
@@ -249,3 +241,5 @@ let g:which_key_map.R = {
       \ }
 
 call which_key#register('<Space>', "g:which_key_map")
+
+syntax match WhichKeyGroup /\[ [0-9A-Za-z_/-]*/

@@ -8,8 +8,8 @@ an executable
 ]]
 
 
-O.auto_complete = false
-O.colorscheme = 'nvcode'
+O.auto_complete = true
+O.colorscheme = 'snazzy'
 
 O.python.formatter = 'yapf'
 O.python.linter = nil

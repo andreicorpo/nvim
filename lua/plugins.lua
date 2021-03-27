@@ -60,7 +60,7 @@ return require('packer').startup(function(use)
 
     -- Status Line and Bufferline
     use 'glepnir/galaxyline.nvim'
-    use 'romgrk/barbar.nvim'
+    -- use 'romgrk/barbar.nvim'
 
     -- Telescope
     use 'nvim-lua/popup.nvim'
@@ -141,7 +141,7 @@ return require('packer').startup(function(use)
     -- use 'cstrap/python-snippets'
     -- use 'ylcnfrht/vscode-python-snippet-pack'
     -- use 'norcalli/snippets.nvim'
-    -- use {'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons'}
+    use {'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons'}
     -- use 'SirVer/ultisnips'
     -- use 'honza/vim-snippets'
     -- vim.g.UltiSnipsExpandTrigger="<CR>"

@@ -1,10 +1,10 @@
 -- Example configuations here: https://github.com/mattn/efm-langserver
 -- python
-local flake8 = {
-    LintCommand = "flake8 --ignore=E501 --stdin-display-name ${INPUT} -",
-    lintStdin = true,
-    lintFormats = {"%f:%l:%c: %m"}
-}
+-- local flake8 = {
+--     LintCommand = "flake8 --ignore=E501 --stdin-display-name ${INPUT} -",
+--     lintStdin = true,
+--     lintFormats = {"%f:%l:%c: %m"}
+-- }
 local isort = {formatCommand = "isort --quiet -", formatStdin = true}
 local yapf = {formatCommand = "yapf --quiet", formatStdin = true}
 -- lua
@@ -13,7 +13,7 @@ local luaFormat = {
     formatStdin = true
 }
 -- JavaScript/React/TypeScript
-local prettier = {formatCommand = "./node_modules/.bin/prettier --stdin-filepath ${INPUT}", formatStdin = true}
+-- local prettier = {formatCommand = "./node_modules/.bin/prettier --stdin-filepath ${INPUT}", formatStdin = true}
 
 local prettier_global = {formatCommand = "prettier --stdin-filepath ${INPUT}", formatStdin = true}
 
@@ -33,13 +33,13 @@ local shellcheck = {
 
 local shfmt = {formatCommand = 'shfmt -ci -s -bn', formatStdin = true}
 
-local markdownlint = {
-    -- TODO default to global lintrc
-    -- lintcommand = 'markdownlint -s -c ./markdownlintrc',
-    lintCommand = 'markdownlint -s',
-    lintStdin = true,
-    lintFormats = {'%f:%l %m', '%f:%l:%c %m', '%f: %l: %m'}
-}
+-- local markdownlint = {
+--     -- TODO default to global lintrc
+--     -- lintcommand = 'markdownlint -s -c ./markdownlintrc',
+--     lintCommand = 'markdownlint -s',
+--     lintStdin = true,
+--     lintFormats = {'%f:%l %m', '%f:%l:%c %m', '%f: %l: %m'}
+-- }
 
 local markdownPandocFormat = {formatCommand = 'pandoc -f markdown -t gfm -sp --tab-stop=2', formatStdin = true}
 

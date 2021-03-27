@@ -4,6 +4,7 @@ require('nv-utils')
 require('settings')
 require('keymappings')
 require('colorscheme')
+require('nv-colorbuddy')
 require('nv-galaxyline')
 
 -- Plugins

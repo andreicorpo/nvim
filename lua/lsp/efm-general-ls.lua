@@ -22,8 +22,8 @@ local eslint = {
     lintIgnoreExitCode = true,
     lintStdin = true,
     lintFormats = {"%f:%l:%c: %m"},
-    formatCommand = "./node_modules/.bin/eslint --fix-to-stdout --stdin --stdin-filename=${INPUT}",
-    formatStdin = true
+    -- formatCommand = "./node_modules/.bin/eslint --fix-to-stdout --stdin --stdin-filename=${INPUT}",
+    -- formatStdin = true
 }
 
 local shellcheck = {
@@ -48,14 +48,14 @@ require"lspconfig".efm.setup {
     init_options = {documentFormatting = true, codeAction = false},
     filetypes = {"lua", "python", "javascriptreact", "javascript", "sh", "html", "css", "json", "yaml", "markdown"},
     settings = {
-        rootMarkers = {".git/"},
+        rootMarkers = {"package.json", ".git/"},
         languages = {
             lua = {luaFormat},
             python = {isort, yapf},
-            -- javascriptreact = {prettier, eslint},
-            -- javascript = {prettier, eslint},
-            javascriptreact = {prettier},
-            javascript = {prettier_global},
+            javascriptreact = {eslint, prettier_global},
+            javascript = {eslint, prettier_global},
+            -- javascriptreact = {prettier},
+            -- javascript = {prettier_global},
             sh = {shellcheck, shfmt},
             html = {prettier_global},
             css = {prettier_global},

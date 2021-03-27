@@ -67,3 +67,7 @@ vim.cmd('inoremap <expr> <c-k> (\"\\<C-p>\")')
 -- map <leader>n <Plug>(miniyank-cycle)
 -- map <leader>N <Plug>(miniyank-cycleback)
 -- ]])
+
+--- Add new line and exit insert mode
+vim.api.nvim_set_keymap('n', '<ENTER>', 'o<ESC>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<S-ENTER>', 'O<ESC>', {noremap = true})

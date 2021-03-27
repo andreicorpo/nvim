@@ -1,7 +1,7 @@
 " Leader Key Maps
 
 " Timeout
-let g:which_key_timeout = 100
+let g:which_key_timeout = 0
 
 let g:which_key_display_names = {'<CR>': '↵', '<TAB>': '⇆'}
 
@@ -21,61 +21,78 @@ autocmd! FileType which_key
 autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
-let g:which_key_map[';'] = [ ':Dashboard'                                      , 'home screen' ]
-let g:which_key_map[','] = [ '<Plug>(emmet-expand-abbr)'                       , 'expand tags' ]
-let g:which_key_map['"'] = [ '<Plug>PeekupOpen'                                , 'registers' ]
-let g:which_key_map['?'] = [ ':NvimTreeFindFile'                               , 'find current file' ]
-let g:which_key_map['e'] = [ ':NvimTreeToggle'                                 , 'explorer' ]
-let g:which_key_map['f'] = [ ':Telescope find_files'                           , 'find files' ]
-let g:which_key_map['h'] = [ '<C-W>s'                                          , 'split below']
-let g:which_key_map['m'] = [ ':MarkdownPreviewToggle'                          , 'markdown preview']
-let g:which_key_map['h'] = [ ':let @/ = ""'                                    , 'no highlight' ]
-let g:which_key_map['r'] = [ ':RnvimrToggle'                                   , 'ranger' ]
+let g:which_key_map[';'] = [ ':Dashboard'                                      , 'Home screen' ]
+let g:which_key_map[','] = [ '<Plug>(emmet-expand-abbr)'                       , 'Expand tags' ]
+let g:which_key_map['"'] = [ '<Plug>PeekupOpen'                                , 'Registers' ]
+let g:which_key_map['?'] = [ ':NvimTreeFindFile'                               , 'Find current file' ]
+let g:which_key_map['e'] = [ ':NvimTreeToggle'                                 , 'Explorer' ]
+let g:which_key_map['f'] = [ ':Telescope find_files'                           , 'Find files' ]
+let g:which_key_map['h'] = [ '<C-W>s'                                          , 'Split below']
+let g:which_key_map['n'] = [ ':let @/ = ""'                                    , 'No highlight' ]
+let g:which_key_map['r'] = [ ':RnvimrToggle'                                   , 'Ranger' ]
 " TODO create entire treesitter section
-let g:which_key_map['T'] = [ ':TSHighlightCapturesUnderCursor'                 , 'treesitter highlight' ]
-let g:which_key_map['v'] = [ '<C-W>v'                                          , 'split right']
+let g:which_key_map['T'] = [ ':TSHighlightCapturesUnderCursor'                 , 'Treesitter highlight' ]
+let g:which_key_map['h'] = [ '<C-W>s'                                          , 'split below']
+let g:which_key_map['v'] = [ '<C-W>v'                                          , 'Split right']
 " TODO play nice with status line
-let g:which_key_map['z'] = [ 'Goyo'                                            , 'zen' ]
+let g:which_key_map['z'] = [ 'Goyo'                                            , 'Zen' ]
 
 " Group mappings
 
+" q is for quitting
+let g:which_key_map.q = {
+      \ 'name' : '[ File quit ]' ,
+      \ 'q' : [':q'                      , 'Quit'],
+      \ 'd' : [':q!'                     , 'Discard and quit'],
+      \ 'a' : [':qa'                     , 'Quit all'],
+      \ }
+
+" w is for saving
+let g:which_key_map.w = {
+      \ 'name' : '[ File write ]' ,
+      \ 'w' : [':w'                      , 'Save file'],
+      \ 'W' : [':w!'                     , 'Overwrite file'],
+      \ 'a' : [':wa'                     , 'Save all files'],
+      \ 's' : [':noa w'                  , 'Writer w/o formatting'],
+      \ }
+
 " . is for emmet
 let g:which_key_map['.'] = {
-      \ 'name' : '+emmet' ,
-      \ ',' : ['<Plug>(emmet-expand-abbr)'               , 'expand abbr'],
-      \ ';' : ['<plug>(emmet-expand-word)'               , 'expand word'],
-      \ 'u' : ['<plug>(emmet-update-tag)'                , 'update tag'],
-      \ 'd' : ['<plug>(emmet-balance-tag-inward)'        , 'balance tag in'],
-      \ 'D' : ['<plug>(emmet-balance-tag-outward)'       , 'balance tag out'],
-      \ 'n' : ['<plug>(emmet-move-next)'                 , 'move next'],
-      \ 'N' : ['<plug>(emmet-move-prev)'                 , 'move prev'],
-      \ 'i' : ['<plug>(emmet-image-size)'                , 'image size'],
-      \ '/' : ['<plug>(emmet-toggle-comment)'            , 'toggle comment'],
-      \ 'j' : ['<plug>(emmet-split-join-tag)'            , 'split join tag'],
-      \ 'k' : ['<plug>(emmet-remove-tag)'                , 'remove tag'],
-      \ 'a' : ['<plug>(emmet-anchorize-url)'             , 'anchorize url'],
-      \ 'A' : ['<plug>(emmet-anchorize-summary)'         , 'anchorize summary'],
-      \ 'm' : ['<plug>(emmet-merge-lines)'               , 'merge lines'],
-      \ 'c' : ['<plug>(emmet-code-pretty)'               , 'code pretty'],
+      \ 'name' : '[ Emmet ]' ,
+      \ ',' : ['<Plug>(emmet-expand-abbr)'               , 'Expand abbr'],
+      \ ';' : ['<plug>(emmet-expand-word)'               , 'Expand word'],
+      \ 'u' : ['<plug>(emmet-update-tag)'                , 'Update tag'],
+      \ 'd' : ['<plug>(emmet-balance-tag-inward)'        , 'Balance tag in'],
+      \ 'D' : ['<plug>(emmet-balance-tag-outward)'       , 'Balance tag out'],
+      \ 'n' : ['<plug>(emmet-move-next)'                 , 'Move next'],
+      \ 'N' : ['<plug>(emmet-move-prev)'                 , 'Move prev'],
+      \ 'i' : ['<plug>(emmet-image-size)'                , 'Image size'],
+      \ '/' : ['<plug>(emmet-toggle-comment)'            , 'Toggle comment'],
+      \ 'j' : ['<plug>(emmet-split-join-tag)'            , 'Split join tag'],
+      \ 'k' : ['<plug>(emmet-remove-tag)'                , 'Remove tag'],
+      \ 'a' : ['<plug>(emmet-anchorize-url)'             , 'Anchorize url'],
+      \ 'A' : ['<plug>(emmet-anchorize-summary)'         , 'Anchorize summary'],
+      \ 'm' : ['<plug>(emmet-merge-lines)'               , 'Merge lines'],
+      \ 'c' : ['<plug>(emmet-code-pretty)'               , 'Code pretty'],
       \ }
 
 " a is for actions
 let g:which_key_map.a = {
-      \ 'name' : '+actions' ,
-      \ 'c' : [':ColorizerToggle'        , 'colorizer'],
-      \ 'h' : [':let @/ = ""'            , 'remove search highlight'],
-      \ 'l' : [':Bracey'                 , 'start live server'],
-      \ 'L' : [':BraceyStop'             , 'stop live server'],
-      \ 'n' : [':set nonumber!'          , 'line-numbers'],
-      \ 's' : [':s/\%V\(.*\)\%V/"\1"/'   , 'surround'],
-      \ 'r' : [':set norelativenumber!'  , 'relative line nums'],
-      \ 'v' : [':Codi'                   , 'virtual repl on'],
-      \ 'V' : [':Codi!'                  , 'virtual repl off'],
+      \ 'name' : '[ Actions ]' ,
+      \ 'c' : [':ColorizerToggle'        , 'Colorizer'],
+      \ 'h' : [':let @/ = ""'            , 'Remove search highlight'],
+      \ 'l' : [':Bracey'                 , 'Start live server'],
+      \ 'L' : [':BraceyStop'             , 'Stop live server'],
+      \ 'n' : [':set nonumber!'          , 'Line numbers'],
+      \ 's' : [':s/\%V\(.*\)\%V/"\1"/'   , 'Surround'],
+      \ 'r' : [':set norelativenumber!'  , 'Relative line nums'],
+      \ 'v' : [':Codi'                   , 'Virtual repl on'],
+      \ 'V' : [':Codi!'                  , 'Virtual repl off'],
       \ }
 
 " b is for buffer
 let g:which_key_map.b = {
-      \ 'name' : '+buffer' ,
+      \ 'name' : '[ Buffer ]' ,
       \ '>' : [':BufferMoveNext'        , 'move next'],
       \ '<' : [':BufferMovePrevious'    , 'move prev'],
       \ 'b' : [':BufferPick'            , 'pick buffer'],
@@ -86,133 +103,133 @@ let g:which_key_map.b = {
       \ }
 
 " d is for debug
-let g:which_key_map.d = {
-      \ 'name' : '+debug' ,
-      \ 'b' : ['DebugToggleBreakpoint '        , 'toggle breakpoint'],
-      \ 'c' : ['DebugContinue'                 , 'continue'],
-      \ 'i' : ['DebugStepInto'                 , 'step into'],
-      \ 'o' : ['DebugStepOver'                 , 'step over'],
-      \ 'r' : ['DebugToggleRepl'               , 'toggle repl'],
-      \ 's' : ['DebugStart'                    , 'start'],
-      \ }
+" let g:which_key_map.d = {
+"       \ 'name' : '+debug' ,
+"       \ 'b' : ['DebugToggleBreakpoint '        , 'toggle breakpoint'],
+"       \ 'c' : ['DebugContinue'                 , 'continue'],
+"       \ 'i' : ['DebugStepInto'                 , 'step into'],
+"       \ 'o' : ['DebugStepOver'                 , 'step over'],
+"       \ 'r' : ['DebugToggleRepl'               , 'toggle repl'],
+"       \ 's' : ['DebugStart'                    , 'start'],
+"       \ }
       " \ 'O' : ['DebugStepOut'                  , 'next-buffer'],
       " \ 'S' : ['DebugGetSession '              , 'fzf-buffer'],
 
 
 " F is for fold
 let g:which_key_map.F = {
-    \ 'name': '+fold',
-    \ 'O' : [':set foldlevel=20'  , 'open all'],
-    \ 'C' : [':set foldlevel=0'   , 'close all'],
-    \ 'c' : [':foldclose'         , 'close'],
-    \ 'o' : [':foldopen'          , 'open'],
-    \ '1' : [':set foldlevel=1'   , 'level1'],
-    \ '2' : [':set foldlevel=2'   , 'level2'],
-    \ '3' : [':set foldlevel=3'   , 'level3'],
-    \ '4' : [':set foldlevel=4'   , 'level4'],
-    \ '5' : [':set foldlevel=5'   , 'level5'],
-    \ '6' : [':set foldlevel=6'   , 'level6']
+    \ 'name': '[ Fold ]',
+    \ 'O' : [':set foldlevel=20'  , 'Open all'],
+    \ 'C' : [':set foldlevel=0'   , 'Close all'],
+    \ 'c' : [':foldclose'         , 'Close'],
+    \ 'o' : [':foldopen'          , 'Open'],
+    \ '1' : [':set foldlevel=1'   , 'Level1'],
+    \ '2' : [':set foldlevel=2'   , 'Level2'],
+    \ '3' : [':set foldlevel=3'   , 'Level3'],
+    \ '4' : [':set foldlevel=4'   , 'Level4'],
+    \ '5' : [':set foldlevel=5'   , 'Level5'],
+    \ '6' : [':set foldlevel=6'   , 'Level6']
     \ }
 
 " s is for search powered by telescope
 let g:which_key_map.s = {
-      \ 'name' : '+search' ,
-      \ '.' : [':Telescope filetypes'                   , 'filetypes'],
-      \ 'B' : [':Telescope git_branches'                , 'git branches'],
-      \ 'd' : [':Telescope lsp_document_diagnostics'    , 'document_diagnostics'],
-      \ 'D' : [':Telescope lsp_workspace_diagnostics'   , 'workspace_diagnostics'],
-      \ 'f' : [':Telescope find_files'                  , 'files'],
-      \ 'h' : [':Telescope command_history'             , 'history'],
-      \ 'i' : [':Telescope media_files'                 , 'media files'],
-      \ 'm' : [':Telescope marks'                       , 'marks'],
-      \ 'M' : [':Telescope man_pages'                   , 'man_pages'],
-      \ 'o' : [':Telescope vim_options'                 , 'vim_options'],
-      \ 't' : [':Telescope live_grep'                   , 'text'],
-      \ 'r' : [':Telescope registers'                   , 'registers'],
-      \ 'w' : [':Telescope file_browser'                , 'buf_fuz_find'],
-      \ 'u' : [':Telescope colorscheme'                 , 'colorschemes'],
+      \ 'name' : '[ Search ]' ,
+      \ '.' : [':Telescope filetypes'                   , 'Filetypes'],
+      \ 'B' : [':Telescope git_branches'                , 'Git branches'],
+      \ 'd' : [':Telescope lsp_document_diagnostics'    , 'Document diagnostics'],
+      \ 'D' : [':Telescope lsp_workspace_diagnostics'   , 'Workspace diagnostics'],
+      \ 'f' : [':Telescope find_files'                  , 'Files'],
+      \ 'h' : [':Telescope command_history'             , 'History'],
+      \ 'i' : [':Telescope media_files'                 , 'Media files'],
+      \ 'm' : [':Telescope marks'                       , 'Marks'],
+      \ 'M' : [':Telescope man_pages'                   , 'Man pages'],
+      \ 'o' : [':Telescope vim_options'                 , 'Vim options'],
+      \ 't' : [':Telescope live_grep'                   , 'Text'],
+      \ 'r' : [':Telescope registers'                   , 'Registers'],
+      \ 'w' : [':Telescope file_browser'                , 'Buf fuz find'],
+      \ 'u' : [':Telescope colorscheme'                 , 'Colorschemes'],
       \ }
 
 let g:which_key_map.S = {
-      \ 'name' : '+Session' ,
+      \ 'name' : '[ Session ]' ,
       \ 's' : [':SessionSave'           , 'save session'],
       \ 'l' : [':SessionLoad'           , 'load Session'],
       \ }
 
 " g is for git
 let g:which_key_map.g = {
-      \ 'name' : '+git' ,
-      \ 'b' : [':GitBlameToggle'                   , 'blame'],
-      \ 'B' : [':GBrowse'                          , 'browse'],
-      \ 'd' : [':Git diff'                         , 'diff'],
-      \ 'j' : [':NextHunk'                         , 'next hunk'],
-      \ 'k' : [':PrevHunk'                         , 'prev hunk'],
-      \ 'l' : [':Git log'                          , 'log'],
-      \ 'n' : [':Neogit'                           , 'neogit'],
-      \ 'p' : [':PreviewHunk'                      , 'preview hunk'],
-      \ 'r' : [':ResetHunk'                        , 'reset hunk'],
-      \ 'R' : [':ResetBuffer'                      , 'reset buffer'],
-      \ 's' : [':StageHunk'                        , 'stage hunk'],
-      \ 'S' : [':Gstatus'                          , 'status'],
-      \ 'u' : [':UndoStageHunk'                    , 'undo stage hunk'],
+      \ 'name' : '[ Git ]' ,
+      \ 'b' : [':GitBlameToggle'                   , 'Blame'],
+      \ 'B' : [':GBrowse'                          , 'Browse'],
+      \ 'd' : [':Git diff'                         , 'Diff'],
+      \ 'j' : [':NextHunk'                         , 'Next hunk'],
+      \ 'k' : [':PrevHunk'                         , 'Prev hunk'],
+      \ 'l' : [':Git log'                          , 'Log'],
+      \ 'n' : [':Neogit'                           , 'Neogit'],
+      \ 'p' : [':PreviewHunk'                      , 'Preview hunk'],
+      \ 'r' : [':ResetHunk'                        , 'Reset hunk'],
+      \ 'R' : [':ResetBuffer'                      , 'Reset buffer'],
+      \ 's' : [':StageHunk'                        , 'Stage hunk'],
+      \ 'S' : [':Gstatus'                          , 'Status'],
+      \ 'u' : [':UndoStageHunk'                    , 'Undo stage hunk'],
       \ }
 
 " G is for gist
 let g:which_key_map.G = {
-      \ 'name' : '+gist' ,
-      \ 'b' : [':Gist -b'                          , 'post gist browser'],
-      \ 'd' : [':Gist -d'                          , 'delete gist'],
-      \ 'e' : [':Gist -e'                          , 'edit gist'],
-      \ 'l' : [':Gist -l'                          , 'list public gists'],
-      \ 's' : [':Gist -ls'                         , 'list starred gists'],
-      \ 'm' : [':Gist -m'                          , 'post gist all buffers'],
-      \ 'p' : [':Gist -P'                          , 'post public gist '],
-      \ 'P' : [':Gist -p'                          , 'post private gist '],
+      \ 'name' : '[ Gist ]' ,
+      \ 'b' : [':Gist -b'                          , 'Post gist browser'],
+      \ 'd' : [':Gist -d'                          , 'Delete gist'],
+      \ 'e' : [':Gist -e'                          , 'Edit gist'],
+      \ 'l' : [':Gist -l'                          , 'List public gists'],
+      \ 's' : [':Gist -ls'                         , 'List starred gists'],
+      \ 'm' : [':Gist -m'                          , 'Post gist all buffers'],
+      \ 'p' : [':Gist -P'                          , 'Post public gist '],
+      \ 'P' : [':Gist -p'                          , 'Post private gist '],
       \ }
       " \ 'a' : [':Gist -a'                          , 'post gist anon'],
 
 " l is for language server protocol
 let g:which_key_map.l = {
-      \ 'name' : '+lsp' ,
-      \ 'a' : [':Lspsaga code_action'                , 'code action'],
-      \ 'A' : [':Lspsaga range_code_action'          , 'selected action'],
-      \ 'd' : [':Telescope lsp_document_diagnostics' , 'document diagnostics'],
-      \ 'D' : [':Telescope lsp_workspace_diagnostics', 'workspace diagnostics'],
-      \ 'f' : [':LspFormatting'                      , 'format'],
-      \ 'I' : [':LspInfo'                            , 'lsp info'],
-      \ 'v' : [':LspVirtualTextToggle'               , 'lsp toggle virtual text'],
-      \ 'l' : [':Lspsaga lsp_finder'                 , 'lsp finder'],
-      \ 'L' : [':Lspsaga show_line_diagnostics'      , 'line_diagnostics'],
-      \ 'o' : [':Vista!!'                            , 'outline'],
-      \ 'p' : [':Lspsaga preview_definition'         , 'preview definition'],
-      \ 'q' : [':Telescope quickfix'                 , 'quickfix'],
-      \ 'r' : [':Lspsaga rename'                     , 'rename'],
-      \ 'T' : [':LspTypeDefinition'                  , 'type defintion'],
-      \ 'x' : [':cclose'                             , 'close quickfix'],
-      \ 's' : [':Telescope lsp_document_symbols'     , 'document symbols'],
-      \ 'S' : [':Telescope lsp_workspace_symbols'    , 'workspace symbols'],
+      \ 'name' : '[ LSP ]' ,
+      \ 'a' : [':Lspsaga code_action'                , 'Code action'],
+      \ 'A' : [':Lspsaga range_code_action'          , 'Selected action'],
+      \ 'd' : [':Telescope lsp_document_diagnostics' , 'Document diagnostics'],
+      \ 'D' : [':Telescope lsp_workspace_diagnostics', 'Workspace diagnostics'],
+      \ 'f' : [':LspFormatting'                      , 'Format'],
+      \ 'I' : [':LspInfo'                            , 'Lsp info'],
+      \ 'v' : [':LspVirtualTextToggle'               , 'Lsp toggle virtual text'],
+      \ 'l' : [':Lspsaga lsp_finder'                 , 'Lsp finder'],
+      \ 'L' : [':Lspsaga show_line_diagnostics'      , 'Line_diagnostics'],
+      \ 'o' : [':Vista!!'                            , 'Outline'],
+      \ 'p' : [':Lspsaga preview_definition'         , 'Preview definition'],
+      \ 'q' : [':Telescope quickfix'                 , 'Quickfix'],
+      \ 'r' : [':Lspsaga rename'                     , 'Rename'],
+      \ 'T' : [':LspTypeDefinition'                  , 'Type defintion'],
+      \ 'x' : [':cclose'                             , 'Close quickfix'],
+      \ 's' : [':Telescope lsp_document_symbols'     , 'Document symbols'],
+      \ 'S' : [':Telescope lsp_workspace_symbols'    , 'Workspace symbols'],
       \ }
       " \ 'H' : [':Lspsaga signature_help'             , 'signature_help'],
 
 " t is for terminal
 let g:which_key_map.t = {
-      \ 'name' : '+terminal' ,
-      \ ';' : [':FloatermNew --wintype=normal --height=6'       , 'terminal'],
-      \ 'f' : [':FloatermNew fzf'                               , 'fzf'],
-      \ 'g' : [':FloatermNew lazygit'                           , 'git'],
-      \ 'd' : [':FloatermNew lazydocker'                        , 'docker'],
-      \ 'n' : [':FloatermNew node'                              , 'node'],
-      \ 'N' : [':FloatermNew nnn'                               , 'nnn'],
-      \ 'p' : [':FloatermNew python'                            , 'python'],
-      \ 'm' : [':FloatermNew lazynpm'                           , 'npm'],
-      \ 't' : [':FloatermToggle'                                , 'toggle'],
-      \ 'y' : [':FloatermNew ytop'                              , 'ytop'],
-      \ 'u' : [':FloatermNew ncdu'                              , 'ncdu'],
+      \ 'name' : '[ Terminal ]' ,
+      \ ';' : [':FloatermNew --wintype=normal --height=20'      , 'Terminal'],
+      \ 'f' : [':FloatermNew fzf'                               , 'Fzf'],
+      \ 'g' : [':FloatermNew lazygit'                           , 'Git'],
+      \ 'd' : [':FloatermNew lazydocker'                        , 'Docker'],
+      \ 'n' : [':FloatermNew node'                              , 'Node'],
+      \ 'N' : [':FloatermNew nnn'                               , 'Nnn'],
+      \ 'p' : [':FloatermNew python'                            , 'Python'],
+      \ 'm' : [':FloatermNew lazynpm'                           , 'Npm'],
+      \ 't' : [':FloatermToggle'                                , 'Toggle'],
+      \ 'y' : [':FloatermNew ytop'                              , 'Ytop'],
+      \ 'u' : [':FloatermNew ncdu'                              , 'Ncdu'],
       \ }
       " \ 'r' : [':FloatermNew ranger'                            , 'ranger'],
 
 let g:which_key_map.R = {
-      \ 'name' : '+Find_Replace' ,
+      \ 'name' : '[ Find & Replace ]' ,
       \ 'f' : [':Farr --source=vimgrep'    , 'file'],
       \ 'p' : [':Farr --source=rgnvim'     , 'project'],
       \ }

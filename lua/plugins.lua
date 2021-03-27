@@ -75,6 +75,8 @@ return require('packer').startup(function(use)
     use 'christianchiarulli/nvcode-color-schemes.vim'
     use 'norcalli/nvim-colorizer.lua'
     use 'sheerun/vim-polyglot'
+    -- use 'tjdevries/colorbuddy.nvim'
+    use 'andreicorpo/colorbuddy.nvim'
 
     -- Git
     use 'TimUntersberger/neogit'
@@ -118,6 +120,7 @@ return require('packer').startup(function(use)
     use 'andymass/vim-matchup'
     use 'windwp/nvim-autopairs'
     use 'blackcauldron7/surround.nvim'
+    use {'npxbr/glow.nvim', run = ':GlowInstall'}
 
     -- TODO put this back when stable for indent lines
     -- 	use { 'lukas-reineke/indent-blankline.nvim', branch = 'lua'}

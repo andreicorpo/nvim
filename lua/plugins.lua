@@ -52,7 +52,7 @@ return require('packer').startup(function(use)
     use 'nvim-treesitter/nvim-treesitter-refactor'
     use 'nvim-treesitter/playground'
     use 'p00f/nvim-ts-rainbow'
-    use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
+    -- use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
 
     -- Icons
     use 'kyazdani42/nvim-web-devicons'

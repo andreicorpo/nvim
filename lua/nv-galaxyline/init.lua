@@ -210,16 +210,16 @@ gls.right[11] = {
 }
 
 gls.short_line_left[1] = {
-    BufferType = {
+    BufferType2 = {
         provider = 'FileTypeName',
         separator = ' ',
-        separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.grey, colors.bg}
+        separator_highlight = {'NONE', colors.green},
+        highlight = {colors.bg, colors.green}
     }
 }
 
 gls.short_line_left[2] = {
-    SFileName = {provider = 'SFileName', condition = condition.buffer_not_empty, highlight = {colors.grey, colors.bg}}
+    SFileName = {provider = 'SFileName', condition = condition.buffer_not_empty, highlight = {colors.bg, colors.green}}
 }
 
-gls.short_line_right[1] = {BufferIcon = {provider = 'BufferIcon', highlight = {colors.grey, colors.bg}}}
+gls.short_line_right[1] = {BufferIcon = {provider = 'BufferIcon', highlight = {colors.bg, colors.green}}}

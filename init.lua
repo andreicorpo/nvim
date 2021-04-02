@@ -36,7 +36,7 @@ require('nv-dashboard')
 require('nv-dial')
 require('nv-nvim-dap')
 require('nv-lightbulb')
-require('nv-indentline')
+-- require('nv-indentline')
 require('nv-bookmark')
 -- require('nv-lspinstall')
 

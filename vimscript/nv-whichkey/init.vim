@@ -3,7 +3,7 @@
 " Timeout
 let g:which_key_timeout = 0
 
-let g:which_key_display_names = {'<CR>': '↵', '<TAB>': '⇆'}
+let g:which_key_display_names = {'<CR>': '↵', '<TAB>': '⇆', " ": 'SPC'}
 
 " Map leader to which_key
 nnoremap <silent> <leader> :silent <c-u> :silent WhichKey '<Space>'<CR>
@@ -85,14 +85,14 @@ let g:which_key_map.a = {
       \ 'c' : [':ColorizerToggle'        , 'Colorizer'],
       \ 'h' : [':let @/ = ""'            , 'Remove search highlight'],
       \ 'i' : [':IndentBlanklineToggle'  , 'Toggle indent lines'],
-      \ 'l' : [':Bracey'                 , 'Start live server'],
-      \ 'L' : [':BraceyStop'             , 'Stop live server'],
       \ 'n' : [':set nonumber!'          , 'Line numbers'],
       \ 's' : [':s/\%V\(.*\)\%V/"\1"/'   , 'Surround'],
       \ 'r' : [':set norelativenumber!'  , 'Relative line nums'],
       \ 'v' : [':Codi'                   , 'Virtual repl on'],
       \ 'V' : [':Codi!'                  , 'Virtual repl off'],
       \ }
+      " \ 'l' : [':Bracey'                 , 'start live server'],
+      " \ 'L' : [':BraceyStop'             , 'stop live server'],
 
 " b is for buffer
 let g:which_key_map.b = {
@@ -120,6 +120,14 @@ let g:which_key_map.b = {
       " \ 'O' : ['DebugStepOut'                  , 'next-buffer'],
       " \ 'S' : ['DebugGetSession '              , 'fzf-buffer'],
 
+" D is for database
+let g:which_key_map.D = {
+      \ 'name' : '+database' ,
+      \ 'u' : ['DBUIToggle '        , 'db ui toggle'],
+      \ 'f' : ['DBUIFindBuffer'     , 'db find buffer'],
+      \ 'r' : ['DBUIRenameBuffer'   , 'db rename buffer'],
+      \ 'l' : ['DBUILastQueryInfo'  , 'db last query'],
+      \ }
 
 " F is for fold
 let g:which_key_map.F = {
@@ -179,6 +187,7 @@ let g:which_key_map.g = {
       \ 'S' : [':Gstatus'                          , 'Status'],
       \ 'u' : [':UndoStageHunk'                    , 'Undo stage hunk'],
       \ }
+      " \ 'n' : [':Neogit'                           , 'neogit'],
 
 " G is for gist
 let g:which_key_map.G = {
@@ -216,6 +225,7 @@ let g:which_key_map.l = {
       \ 'S' : [':Telescope lsp_workspace_symbols'    , 'Workspace symbols'],
       \ }
       " \ 'H' : [':Lspsaga signature_help'             , 'signature_help'],
+      " \ 'o' : [':Vista!!'                            , 'outline'],
 
 " t is for terminal
 let g:which_key_map.t = {
@@ -234,11 +244,11 @@ let g:which_key_map.t = {
       \ }
       " \ 'r' : [':FloatermNew ranger'                            , 'ranger'],
 
-let g:which_key_map.R = {
-      \ 'name' : '[ Find & Replace ]' ,
-      \ 'f' : [':Farr --source=vimgrep'    , 'file'],
-      \ 'p' : [':Farr --source=rgnvim'     , 'project'],
-      \ }
+" let g:which_key_map.R = {
+"       \ 'name' : '+Find_Replace' ,
+"       \ 'f' : [':Farr --source=vimgrep'    , 'file'],
+"       \ 'p' : [':Farr --source=rgnvim'     , 'project'],
+"       \ }
 
 call which_key#register('<Space>', "g:which_key_map")
 

@@ -3,10 +3,20 @@ O = {
     auto_complete = true,
     colorscheme = 'snazzy',
     hidden_files = true,
-    wrap_lines = true,
+    wrap_lines = false,
     number = true,
     relative_number = true,
     shell = 'bash',
+
+    -- @usage pass a table with your desired languages
+    treesitter = {
+        ensure_installed = "all",
+        ignore_install = {"haskell"},
+        highlight = {enabled = true},
+        playground = {enabled = true},
+        rainbow = {enabled = true}
+    },
+
     database = {save_location = '~/.config/nvcode_db', auto_execute = 1},
     python = {
         linter = '',

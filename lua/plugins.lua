@@ -122,6 +122,7 @@ return require('packer').startup(function(use)
     use 'MattesGroeger/vim-bookmarks'
     use 'windwp/nvim-autopairs'
     use 'mbbill/undotree'
+    use 'cohama/lexima.vim'
 
     -- Database
     use 'tpope/vim-dadbod'

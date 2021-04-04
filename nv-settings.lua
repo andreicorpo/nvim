@@ -7,7 +7,7 @@ a global executable or a path to
 an executable
 ]] -- general
 O.auto_complete = true
-O.colorscheme = 'nvcode'
+O.colorscheme = 'snazzy'
 O.auto_close_tree = 0
 
 O.clang.diagnostics.virtual_text = true
@@ -33,7 +33,7 @@ O.lua.autoformat = true
 
 -- javascript
 O.tsserver.formatter = 'prettier'
-O.tsserver.linter = nil
+O.tsserver.linter = 'eslint'
 O.tsserver.autoformat = true
 
 -- json

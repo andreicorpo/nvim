@@ -5,11 +5,9 @@ Formatters and linters should be
 filled in as strings with either
 a global executable or a path to
 an executable
-]]
-
--- general
+]] -- general
 O.auto_complete = true
-O.colorscheme = 'lunar'
+O.colorscheme = 'snazzy'
 O.auto_close_tree = 0
 O.wrap_lines = false
 
@@ -18,8 +16,7 @@ O.treesitter.ensure_installed = "all"
 O.treesitter.ignore_install = {"haskell"}
 O.treesitter.highlight.enabled = true
 O.treesitter.playground.enabled = true
-O.treesitter.rainbow.enabled = false
-
+O.treesitter.rainbow.enabled = true
 
 O.clang.diagnostics.virtual_text = true
 O.clang.diagnostics.signs = true

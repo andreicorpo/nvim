@@ -100,7 +100,7 @@ let g:which_key_map.b = {
       \ '>' : [':BufferMoveNext'                          , 'Move next'],
       \ '<' : [':BufferMovePrevious'                      , 'Move prev'],
       \ 'b' : [':BufferLinePick'                          , 'Pick buffer'],
-      \ 'd' : [':Bdelete'                                 , 'Delete buffer'],
+      \ 'd' : [':bdelete'                                 , 'Delete buffer'],
       \ 'n' : [':BufferLineCycleNext'                     , 'Next buffer'],
       \ 'p' : [':BufferLineCyclePrev'                     , 'Previous buffer'],
       \ '?' : [':Telescope buffers'                       , 'Search buffers'],

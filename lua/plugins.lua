@@ -9,7 +9,9 @@ if fn.empty(fn.glob(install_path)) > 0 then
     execute 'packadd packer.nvim'
 end
 
-local my = function(file) require(file) end
+local my = function(file)
+    require(file)
+end
 
 vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
 
@@ -41,6 +43,7 @@ return require('packer').startup(function(use)
     use 'hrsh7th/nvim-compe'
     use 'mattn/emmet-vim'
     use 'hrsh7th/vim-vsnip'
+    use 'hrsh7th/vim-vsnip-integ'
     use "rafamadriz/friendly-snippets"
     use 'ChristianChiarulli/html-snippets'
 
@@ -57,7 +60,7 @@ return require('packer').startup(function(use)
     use 'ryanoasis/vim-devicons'
 
     -- Status Line and Bufferline
-    use { 'glepnir/galaxyline.nvim', config = my('nv-galaxyline') }
+    use {'glepnir/galaxyline.nvim', config = my('nv-galaxyline')}
     -- use { 'glepnir/galaxyline.nvim', config = function() require'nv-galaxyline' end } -- inline fn alternative
     -- use 'romgrk/barbar.nvim'
 
@@ -126,7 +129,7 @@ return require('packer').startup(function(use)
     use 'windwp/nvim-autopairs'
     use 'mbbill/undotree'
     use 'cohama/lexima.vim'
-	use 'nacro90/numb.nvim'
+    use 'nacro90/numb.nvim'
 
     -- Database
     use 'tpope/vim-dadbod'
@@ -156,7 +159,7 @@ return require('packer').startup(function(use)
     -- vim.g.UltiSnipsExpandTrigger="<CR>"
     -- vim.g.UltiSnipsJumpForwardTrigger="<Tab>"
     -- vim.g.UltiSnipsJumpBackwardTrigger="<S-Tab>"
-    -- use 'blackcauldron7/surround.nvim'
+    use 'blackcauldron7/surround.nvim'
     -- use 'ChristianChiarulli/java-snippets'
     -- use 'xabikos/vscode-javascript'
     -- use 'dsznajder/vscode-es7-javascript-react-snippets'

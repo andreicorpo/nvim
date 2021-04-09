@@ -43,6 +43,7 @@ require('nv-dadbod')
 require('nv-doge')
 require('nv-dependency')
 -- require('nv-lspinstall')
+require('nv-surround')
 
 -- Which Key (Hope to replace with Lua plugin someday)
 vim.cmd('source ~/.config/nvim/vimscript/nv-whichkey/init.vim')
